@@ -1,70 +1,70 @@
-const audio = document.getElementById("audio");
-const playButton = document.getElementById("playBtn");
-const pauseButton = document.getElementById("pauseBtn");
-const stopButton = document.getElementById("stopBtn");
-const volumeSlider = document.getElementById("volume");
-const streamInput = document.getElementById("streamUrl");
-const statusLabel = document.getElementById("status");
-const nowPlaying = document.getElementById("nowPlaying");
+const odtwarzacz = document.getElementById("audio");
+const przyciskOdtwarzaj = document.getElementById("playBtn");
+const przyciskPauza = document.getElementById("pauseBtn");
+const przyciskStop = document.getElementById("stopBtn");
+const suwakGlosnosci = document.getElementById("volume");
+const poleStrumienia = document.getElementById("streamUrl");
+const etykietaStatusu = document.getElementById("status");
+const etykietaTerazOdtwarzane = document.getElementById("nowPlaying");
 
-const setStatus = (message, isError = false) => {
-  statusLabel.textContent = message;
-  statusLabel.style.background = isError ? "#ffe1e3" : "#e4e8f7";
-  statusLabel.style.color = isError ? "#a11b24" : "#1f2232";
+const ustawStatus = (wiadomosc, czyBlad = false) => {
+  etykietaStatusu.textContent = wiadomosc;
+  etykietaStatusu.style.background = czyBlad ? "#ffe1e3" : "#e4e8f7";
+  etykietaStatusu.style.color = czyBlad ? "#a11b24" : "#1f2232";
 };
 
-const setNowPlaying = (message) => {
-  nowPlaying.textContent = message;
+const ustawTerazOdtwarzane = (wiadomosc) => {
+  etykietaTerazOdtwarzane.textContent = wiadomosc;
 };
 
-const updateStream = () => {
-  const url = streamInput.value.trim();
+const aktualizujStrumien = () => {
+  const url = poleStrumienia.value.trim();
   if (!url) {
-    setStatus("Podaj adres streamu", true);
-    setNowPlaying("Brak adresu do odtworzenia.");
+    ustawStatus("Podaj adres streamu", true);
+    ustawTerazOdtwarzane("Brak adresu do odtworzenia.");
     return false;
   }
 
-  if (audio.src !== url) {
-    audio.src = url;
+  if (odtwarzacz.src !== url) {
+    odtwarzacz.src = url;
   }
-  setNowPlaying(url);
+  ustawTerazOdtwarzane(url);
   return true;
 };
 
-playButton.addEventListener("click", async () => {
-  if (!updateStream()) {
+przyciskOdtwarzaj.addEventListener("click", async () => {
+  if (!aktualizujStrumien()) {
     return;
   }
 
   try {
-    await audio.play();
-    setStatus("Odtwarzanie");
+    await odtwarzacz.play();
+    ustawStatus("Odtwarzanie");
   } catch (error) {
-    setStatus("Nie udało się odtworzyć strumienia", true);
+    ustawStatus("Nie udało się odtworzyć strumienia", true);
     console.error(error);
   }
 });
 
-pauseButton.addEventListener("click", () => {
-  audio.pause();
-  setStatus("Pauza");
+przyciskPauza.addEventListener("click", () => {
+  odtwarzacz.pause();
+  ustawStatus("Pauza");
 });
 
-stopButton.addEventListener("click", () => {
-  audio.pause();
-  audio.currentTime = 0;
-  setStatus("Zatrzymano");
+przyciskStop.addEventListener("click", () => {
+  odtwarzacz.pause();
+  odtwarzacz.currentTime = 0;
+  ustawStatus("Zatrzymano");
 });
 
-volumeSlider.addEventListener("input", (event) => {
-  audio.volume = Number(event.target.value);
+suwakGlosnosci.addEventListener("input", (event) => {
+  odtwarzacz.volume = Number(event.target.value);
 });
 
-streamInput.addEventListener("change", () => {
-  setStatus("Gotowy do odtwarzania");
-  setNowPlaying(streamInput.value.trim() || "Wybierz adres streamu, aby rozpocząć.");
+poleStrumienia.addEventListener("change", () => {
+  ustawStatus("Gotowy do odtwarzania");
+  ustawTerazOdtwarzane(poleStrumienia.value.trim() || "Wybierz adres streamu, aby rozpocząć.");
 });
 
-setStatus("Gotowy do odtwarzania");
-setNowPlaying("Wybierz adres streamu, aby rozpocząć.");
+ustawStatus("Gotowy do odtwarzania");
+ustawTerazOdtwarzane("Wybierz adres streamu, aby rozpocząć.");
