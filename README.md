@@ -25,3 +25,7 @@ Następnie otwórz `http://localhost:8000` w przeglądarce.
 - `styles.css` — style aplikacji.
 - `app.js` — logika odtwarzacza.
 - `logo.svg` — logo aplikacji.
+
+## Gdzie umieszczać pliki audio?
+
+Najprościej jest dodać pliki audio bezpośrednio do repozytorium (np. w katalogu `audio/`), a potem używać ich ścieżek w polu „Adres streamu”, np. `audio/moj-utwor.mp3`.
