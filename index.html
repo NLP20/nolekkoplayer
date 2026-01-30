@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>NoLekkoPlayer</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="player">
+      <header class="player__header">
+        <div>
+          <img class="player__logo" src="logo.svg" alt="Logo NoLekkoPlayer" />
+          <p class="player__eyebrow">Odtwarzacz online</p>
+          <h1>NoLekkoPlayer</h1>
+        </div>
+        <span class="player__status" id="status">Gotowy do odtwarzania</span>
+      </header>
+
+      <section class="player__card">
+        <label class="field">
+          <span>Adres streamu</span>
+          <input
+            id="streamUrl"
+            type="url"
+            placeholder="https://twoj-stream.pl/radio.mp3"
+            autocomplete="off"
+          />
+        </label>
+        <div class="controls">
+          <button id="playBtn" class="button button--primary">▶ Odtwarzaj</button>
+          <button id="pauseBtn" class="button">⏸ Pauza</button>
+          <button id="stopBtn" class="button">⏹ Stop</button>
+        </div>
+        <div class="download">
+          <span class="download__label">Pobierz materiały</span>
+          <a id="downloadLink" class="button button--ghost" href="#" download>⬇ Pobierz materiały</a>
+        </div>
+        <label class="field">
+          <span>Głośność</span>
+          <input id="volume" type="range" min="0" max="1" step="0.01" value="0.8" />
+        </label>
+        <div class="now-playing">
+          <p class="now-playing__label">Teraz odtwarzane</p>
+          <p id="nowPlaying" class="now-playing__track">Wybierz adres streamu, aby rozpocząć.</p>
+        </div>
+      </section>
+
+      <section class="player__tips">
+        <h2>Jak korzystać?</h2>
+        <ol>
+          <li>Wklej adres strumienia audio (MP3, AAC, HLS).</li>
+          <li>Naciśnij „Odtwarzaj”, aby rozpocząć odsłuch.</li>
+          <li>Dostosuj głośność suwakami.</li>
+        </ol>
+      </section>
+    </main>
+
+    <audio id="audio" preload="none" crossorigin="anonymous"></audio>
+    <script src="app.js"></script>
+  </body>
+</html>
