@@ -6,11 +6,22 @@ const suwakGlosnosci = document.getElementById("volume");
 const poleStrumienia = document.getElementById("streamUrl");
 const etykietaStatusu = document.getElementById("status");
 const etykietaTerazOdtwarzane = document.getElementById("nowPlaying");
+const linkPobierania = document.getElementById("downloadLink");
 
 const ustawStatus = (wiadomosc, czyBlad = false) => {
   etykietaStatusu.textContent = wiadomosc;
   etykietaStatusu.style.background = czyBlad ? "#ffe1e3" : "#e4e8f7";
   etykietaStatusu.style.color = czyBlad ? "#a11b24" : "#1f2232";
+};
+
+const ustawLinkPobierania = (url) => {
+  if (url) {
+    linkPobierania.href = url;
+    linkPobierania.setAttribute("aria-disabled", "false");
+  } else {
+    linkPobierania.href = "#";
+    linkPobierania.setAttribute("aria-disabled", "true");
+  }
 };
 
 const ustawTerazOdtwarzane = (wiadomosc) => {
@@ -22,6 +33,7 @@ const aktualizujStrumien = () => {
   if (!url) {
     ustawStatus("Podaj adres streamu", true);
     ustawTerazOdtwarzane("Brak adresu do odtworzenia.");
+    ustawLinkPobierania("");
     return false;
   }
 
@@ -29,6 +41,7 @@ const aktualizujStrumien = () => {
     odtwarzacz.src = url;
   }
   ustawTerazOdtwarzane(url);
+  ustawLinkPobierania(url);
   return true;
 };
 
@@ -63,8 +76,17 @@ suwakGlosnosci.addEventListener("input", (event) => {
 
 poleStrumienia.addEventListener("change", () => {
   ustawStatus("Gotowy do odtwarzania");
-  ustawTerazOdtwarzane(poleStrumienia.value.trim() || "Wybierz adres streamu, aby rozpocząć.");
+  const url = poleStrumienia.value.trim();
+  ustawTerazOdtwarzane(url || "Wybierz adres streamu, aby rozpocząć.");
+  ustawLinkPobierania(url);
 });
 
 ustawStatus("Gotowy do odtwarzania");
 ustawTerazOdtwarzane("Wybierz adres streamu, aby rozpocząć.");
+ustawLinkPobierania("");
+
+linkPobierania.addEventListener("click", (event) => {
+  if (linkPobierania.getAttribute("aria-disabled") === "true") {
+    event.preventDefault();
+  }
+});

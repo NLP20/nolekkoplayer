@@ -92,6 +92,18 @@ body {
   gap: 12px;
 }
 
+.download {
+  display: grid;
+  gap: 8px;
+}
+
+.download__label {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #7a8199;
+}
+
 .button {
   border: none;
   border-radius: 999px;
@@ -112,6 +124,18 @@ body {
 .button--primary {
   background: linear-gradient(135deg, #5b7cfa, #7f4bff);
   color: #ffffff;
+}
+
+.button--ghost {
+  background: #f3f5ff;
+  border: 1px dashed #c8d0f0;
+}
+
+.button--ghost[aria-disabled="true"] {
+  cursor: not-allowed;
+  opacity: 0.6;
+  box-shadow: none;
+  transform: none;
 }
 
 .now-playing {
