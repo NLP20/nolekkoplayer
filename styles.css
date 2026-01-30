@@ -1,0 +1,165 @@
+:root {
+  color-scheme: light;
+  font-family: "Inter", "Segoe UI", system-ui, sans-serif;
+  background: #f5f6fb;
+  color: #1f2232;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px 16px 48px;
+}
+
+.player {
+  width: min(960px, 100%);
+  display: grid;
+  gap: 24px;
+}
+
+.player__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.player__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 12px;
+  color: #68708a;
+  margin: 0 0 8px;
+}
+
+.player__header h1 {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 40px);
+}
+
+.player__logo {
+  width: 160px;
+  height: auto;
+  display: block;
+  margin-bottom: 12px;
+}
+
+.player__status {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #e4e8f7;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.player__card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 24px 48px -32px rgba(31, 34, 50, 0.35);
+  display: grid;
+  gap: 20px;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+  font-size: 14px;
+  color: #4a5268;
+}
+
+.field input[type="url"] {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid #d3d8e6;
+  font-size: 16px;
+}
+
+.field input[type="range"] {
+  width: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.button {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  background: #ecf0fb;
+  color: #2d3448;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px -18px rgba(20, 24, 38, 0.5);
+}
+
+.button--primary {
+  background: linear-gradient(135deg, #5b7cfa, #7f4bff);
+  color: #ffffff;
+}
+
+.now-playing {
+  padding: 16px;
+  border-radius: 16px;
+  background: #f3f5ff;
+}
+
+.now-playing__label {
+  margin: 0 0 8px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #7a8199;
+}
+
+.now-playing__track {
+  margin: 0;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.player__tips {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px 24px;
+  font-size: 14px;
+  color: #4a5268;
+}
+
+.player__tips h2 {
+  margin-top: 0;
+  font-size: 18px;
+  color: #1f2232;
+}
+
+.player__tips ol {
+  margin: 0;
+  padding-left: 18px;
+}
+
+@media (max-width: 640px) {
+  .player__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .controls {
+    flex-direction: column;
+  }
+}
